@@ -35,9 +35,7 @@ export const Card = () => {
           </span>
         </div>
       </div>
-      <p className="card-description">
-        {selectedPokemon.flavorText.flavor_text}
-      </p>
+      <p className="card-description">{selectedPokemon.flavorText}</p>
     </div>
   ) : (
     <p>Search for a pokemon</p>

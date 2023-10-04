@@ -22,7 +22,7 @@ export async function getPokemon(pokemon) {
 
     const flavorText = additionalData.flavor_text_entries.find(
       (text) => text.language.name === "en"
-    );
+    ).flavor_text;
 
     return { ...data, flavorText };
   } catch (error) {
