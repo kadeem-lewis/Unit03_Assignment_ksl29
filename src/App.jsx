@@ -1,16 +1,19 @@
-import { useState } from "react";
 import { Search } from "./components/Search";
 import { Card } from "./components/Card";
-import { PokemonProvider } from "./components/PokemonProvider";
+import { PokemonProvider, PokemonContext } from "./components/PokemonProvider";
 
 function App() {
   return (
     <>
       <PokemonProvider>
-        <nav>Hello World</nav>
-        <main>
-          <Search />
-        </main>
+        <div className="container">
+          <nav>Pokedex</nav>
+          <main>
+            <Search />
+            <Card />
+          </main>
+          <footer></footer>
+        </div>
       </PokemonProvider>
     </>
   );
