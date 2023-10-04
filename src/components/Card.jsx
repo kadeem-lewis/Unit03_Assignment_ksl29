@@ -26,11 +26,13 @@ export const Card = () => {
         </div>
         <div className="physical-stats">
           <span>HT</span>
-          <span>{selectedPokemon.height / 10}"</span>
+          <span className="uom">{selectedPokemon.height / 10}m</span>
         </div>
         <div className="physical-stats">
           <span>WT</span>
-          <span>{(selectedPokemon.weight / 10).toFixed(1)} lbs.</span>
+          <span className="uom">
+            {(selectedPokemon.weight / 10).toFixed(1)} lbs.
+          </span>
         </div>
       </div>
       <p className="card-description">

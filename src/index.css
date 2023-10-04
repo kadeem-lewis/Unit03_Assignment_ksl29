@@ -86,6 +86,9 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+.uom {
+  text-transform: lowercase;
+}
 
 .normal {
   background-color: #c6c6a7;
