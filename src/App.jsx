@@ -1,6 +1,6 @@
 import { Search } from "./components/Search";
 import { Card } from "./components/Card";
-import { PokemonProvider, PokemonContext } from "./components/PokemonProvider";
+import { PokemonProvider } from "./components/PokemonProvider";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
             <Search />
             <Card />
           </main>
-          <footer></footer>
+          <footer>&copy; Kadeem Lewis</footer>
         </div>
       </PokemonProvider>
     </>
