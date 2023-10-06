@@ -1,43 +1,67 @@
 import { useContext } from "react";
 import { PokemonContext } from "./PokemonProvider";
+import { Icons } from "./Icons";
+
+const pokemonTrivia = [
+  "Rhydon was the first Pokémon ever created.",
+  "The Swords of Justice are based on The Three Musketeers",
+  "Koffing & Weezing Used To Be Named After American Cities",
+  "Ash Ketchum's name in Japan is Satoshi",
+  "Caterpie is the first pokemon ash caught himself",
+];
 
 export const Card = () => {
   const { selectedPokemon } = useContext(PokemonContext);
   return selectedPokemon ? (
-    <div className="card">
-      <div className="card-heading">Info</div>
-      <div className="card-img">
-        <img
-          src={selectedPokemon.sprites.front_default}
-          alt={`${selectedPokemon.name} sprite`}
-        />
-      </div>
-      <div className="card-data">
-        <div className="card-name">
-          {selectedPokemon.id.toString().padStart(3, "0")}{" "}
-          {selectedPokemon.name}
+    <div className="card-wrapper">
+      <div className="card">
+        <div className="card-heading">
+          <Icons.caretDown />
+          Info
         </div>
-        <div className="type-box">
-          {selectedPokemon.types.map((type, index) => (
-            <div key={index} className={`type ${type.type.name}`}>
-              {type.type.name}
+        <div className="card-img">
+          <img
+            src={selectedPokemon.sprites.front_default}
+            alt={`${selectedPokemon.name} sprite`}
+          />
+        </div>
+        <div className="card-data">
+          <div className="card-name">
+            <Icons.pokeball className="pokeball" />
+            {selectedPokemon.id.toString().padStart(3, "0")}{" "}
+            {selectedPokemon.name}
+          </div>
+          <div className="type-box">
+            {selectedPokemon.types.map((type, index) => (
+              <div key={index} className={`type ${type.type.name}`}>
+                {type.type.name}
+              </div>
+            ))}
+          </div>
+          <div className="stats">
+            <div className="physical-stats">
+              <span>HT</span>
+              <span className="uom">{selectedPokemon.height / 10}m</span>
             </div>
-          ))}
+            <div className="physical-stats">
+              <span>WT</span>
+              <span className="uom">
+                {(selectedPokemon.weight / 10).toFixed(1)} lbs.
+              </span>
+            </div>
+          </div>
         </div>
-        <div className="physical-stats">
-          <span>HT</span>
-          <span className="uom">{selectedPokemon.height / 10}m</span>
-        </div>
-        <div className="physical-stats">
-          <span>WT</span>
-          <span className="uom">
-            {(selectedPokemon.weight / 10).toFixed(1)} lbs.
-          </span>
-        </div>
+        <p className="card-description">
+          {selectedPokemon.flavorText.replace("/n", " ")}
+        </p>
       </div>
-      <p className="card-description">{selectedPokemon.flavorText}</p>
     </div>
   ) : (
-    <p>Search for a pokemon</p>
+    <div>
+      <p className="did-you-know">Did you know?</p>
+      <p className="trivia">
+        {pokemonTrivia[Math.floor(Math.random() * pokemonTrivia.length)]}
+      </p>
+    </div>
   );
 };
