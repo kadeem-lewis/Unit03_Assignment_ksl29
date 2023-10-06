@@ -16,7 +16,9 @@ export const Search = () => {
   };
   return (
     <>
-      <label htmlFor="pokemon-search">Search for a pokemon:</label>
+      <label htmlFor="pokemon-search" className="search">
+        Search for a pokemon:
+      </label>
       <input
         type="text"
         list="pokedex"
