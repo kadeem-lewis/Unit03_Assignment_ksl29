@@ -1,3 +1,9 @@
+//Kadeem Lewis
+//ksl29
+//10-06-2023
+//IT301 - 001
+//Unit 03 Assignment
+
 export const Icons = {
   pokeball: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" {...props}>
