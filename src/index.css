@@ -263,6 +263,11 @@ footer {
   text-align: center;
 }
 
+#pokemon-search {
+  padding: 0.4rem;
+  font-size: 1.25rem;
+}
+
 .did-you-know {
   font-size: 1.5rem;
   font-family: "Pokemon Solid";
