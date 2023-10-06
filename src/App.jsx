@@ -7,12 +7,12 @@ function App() {
     <>
       <PokemonProvider>
         <div className="container">
-          <nav>Pokedex</nav>
+          <header>National Pokedex</header>
           <main>
             <Search />
             <Card />
           </main>
-          <footer>&copy; Kadeem Lewis</footer>
+          <footer>&copy; Kadeem Lewis 2023</footer>
         </div>
       </PokemonProvider>
     </>
