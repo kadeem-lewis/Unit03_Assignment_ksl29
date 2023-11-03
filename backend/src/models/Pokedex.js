@@ -11,5 +11,5 @@ const PokedexSchema = new Schema({
   weight: { type: Number, required: true },
 });
 
-const Pokedex = model("ksl29_pokedex", PokedexSchema);
+const Pokedex = model("ksl29_pokedex", PokedexSchema, "ksl29_pokedex");
 export default Pokedex;
