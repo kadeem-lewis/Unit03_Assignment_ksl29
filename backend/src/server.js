@@ -16,9 +16,12 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
-
-mongoose.connect(process.env.DB_URI);
+try {
+  await mongoose.connect(process.env.DB_URI);
+  app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+  });
+} catch (error) {
+  console.error(error);
+}
 mongoose.connection.on("error", (error) => console.log(error));
