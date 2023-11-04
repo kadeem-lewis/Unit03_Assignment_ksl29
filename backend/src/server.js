@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { pokedexRouter } from "./routes/pokedex.js";
+import { pokedexRouter } from "./routes/pokedex.route.js";
 
 dotenv.config();
 
