@@ -1,3 +1,9 @@
+//Kadeem Lewis
+//ksl29
+//11-03-2023
+//IT301 - 001
+//Unit 07 Assignment
+
 import { Schema, model } from "mongoose";
 
 const PokedexSchema = new Schema({
