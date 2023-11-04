@@ -19,5 +19,12 @@ export async function getPokedex(req, res, next) {
     .setOptions({ sanitizeFilter: true })
     .limit(pokemonPerPage)
     .skip(pokemonPerPage * page);
-  res.json(results);
+
+  res.json({
+    results,
+    page,
+    pokemonPerPage,
+    filters,
+    totalResults: results.length,
+  });
 }
