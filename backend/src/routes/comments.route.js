@@ -9,7 +9,7 @@ import {
   addComment,
   updateComment,
   deleteComment,
-} from "../controllers/comment.controller.js";
+} from "../controllers/comments.controller.js";
 
 const router = express.Router();
 
