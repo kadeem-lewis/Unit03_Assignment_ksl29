@@ -9,6 +9,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { pokedexRouter } from "./routes/pokedex.route.js";
+import { commentRouter } from "./routes/comments.route.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(
 app.use(express.json());
 
 app.use("/api/v1/ksl29", pokedexRouter);
+app.use("/api/v1/ksl29", commentRouter);
 app.use("*", (req, res) => {
   res.status(404).json({ error: "not found" });
 });
