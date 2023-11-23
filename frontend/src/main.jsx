@@ -6,11 +6,21 @@
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
+import Root from "./routes/root.jsx";
+import Pokemon from "./routes/pokemon.jsx";
 import "./index.css";
+import RootLayout from "./layouts/RootLayout.jsx";
+
+const router = createBrowserRouter(createRoutesFromElements(
+<Route path="/" element={<RootLayout/>}>
+  <Route index element={<Root/>} />
+  <Route path=":id" element={<Pokemon/>} />
+</Route>
+))
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
