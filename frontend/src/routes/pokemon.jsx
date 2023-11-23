@@ -7,6 +7,7 @@
 import React from 'react'
 import {Card} from '../components/Card.jsx'
 import { getPokemon } from '../api/GetPokemon.js'
+import { Outlet } from 'react-router-dom'
 
 export async function loader({}){
   const pokemon = await getPokemon()
@@ -17,6 +18,7 @@ export default function Pokemon() {
   return (
     <>
     <Card />
+    <Outlet/>
     </>
   )
 }
