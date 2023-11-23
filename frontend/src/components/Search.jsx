@@ -4,12 +4,11 @@
 //IT301 - 001
 //Unit 11 Assignment
 
-import { useContext } from "react";
-import { PokemonContext } from "./PokemonProvider";
+import { useOutletContext } from "react-router-dom";
 import { getPokemon } from "../api/GetPokemon";
 
 export const Search = () => {
-  const { pokemon, setSelectedPokemon } = useContext(PokemonContext);
+  const { pokemon, setSelectedPokemon } = useOutletContext();
 
   const handleChange = async (event) => {
     if (event.target) {

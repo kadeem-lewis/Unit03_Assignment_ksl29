@@ -6,13 +6,26 @@
 
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { getPokedex } from '../api/GetPokemon';
 
 export default function RootLayout() {
+
+    const [pokemon, setPokemon] = useState([]);
+    const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+          const pokemon = await getPokedex();
+          setPokemon(pokemon.results);
+        })();
+      }, []);
+    
   return (
     <div className="container">
         <header>National Pokedex</header>
         <main>
-            <Outlet/>
+            <Outlet context={{pokemon,setPokemon,selectedPokemon,setSelectedPokemon}}/>
         </main>
         <footer>&copy; Kadeem Lewis 2023</footer>
     </div>

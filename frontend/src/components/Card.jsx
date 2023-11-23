@@ -4,9 +4,8 @@
 //IT301 - 001
 //Unit 11 Assignment
 
-import { useContext } from "react";
-import { PokemonContext } from "./PokemonProvider";
 import { Icons } from "./Icons";
+import { useOutletContext } from "react-router-dom";
 
 const pokemonTrivia = [
   "Rhydon was the first Pokémon ever created.",
@@ -17,7 +16,7 @@ const pokemonTrivia = [
 ];
 
 export const Card = () => {
-  const { selectedPokemon } = useContext(PokemonContext);
+  const { selectedPokemon } = useOutletContext();
   return selectedPokemon ? (
     <div className="card-wrapper">
       <div className="card">
