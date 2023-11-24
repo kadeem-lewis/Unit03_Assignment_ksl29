@@ -4,12 +4,15 @@
 //IT301 - 001
 //Unit 11 Assignment
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+
 export async function getPokedex() {
   try {
     const response = await fetch(
-      "https://pokeapi.co/api/v2/pokemon?limit=151&offset=0"
+      `${baseUrl}/api/v1/ksl29/pokemon`
     );
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -17,22 +20,30 @@ export async function getPokedex() {
   }
 }
 
-export async function getPokemon(pokemon) {
+export async function getPokemon(pokemonId) {
   try {
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+      `${baseUrl}/api/v1/ksl29/pokemon?_id=${pokemonId}`
     );
     const data = await response.json();
-    const additionalResponse = await fetch(data.species.url);
-    const additionalData = await additionalResponse.json();
-
-    const flavorText = additionalData.flavor_text_entries.find(
-      (text) => text.language.name === "en"
-    ).flavor_text;
-
-    return { ...data, flavorText };
+    console.log("Pokemon",data);
+    return data.results[0];
   } catch (error) {
     console.error(error);
-    return null;
+    return [];
+  }
+}
+
+export async function getComments(pokemon){
+  try {
+    const response = await fetch(
+      `${baseUrl}/api/v1/ksl29/comments?pokemonId=${pokemon}`
+    );
+    const data = await response.json();
+    console.log("Comments",data);
+    return data;
+  } catch (error) {
+    console.error(error);
+    return [];
   }
 }
