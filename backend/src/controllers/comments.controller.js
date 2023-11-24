@@ -6,6 +6,16 @@
 
 import Comment from "../models/Comment.js";
 
+export const getComments = async (req, res) => {
+  const { pokemonId } = req.query;
+  try {
+    const comments = await Comment.find({ pokemonId: pokemonId});
+    res.status(200).json(comments);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export const addComment = async (req, res) => {
   const { username, comment, userId, pokemonId } = req.body;
   const newComment = new Comment({ username, comment, userId, pokemonId });

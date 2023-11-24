@@ -6,6 +6,7 @@
 
 import express from "express";
 import {
+  getComments,
   addComment,
   updateComment,
   deleteComment,
@@ -15,6 +16,7 @@ const router = express.Router();
 
 router
   .route("/comments")
+  .get(getComments)
   .post(addComment)
   .put(updateComment)
   .delete(deleteComment);
