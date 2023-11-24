@@ -8,10 +8,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import Root from "./routes/root.jsx";
-import Pokemon from "./routes/pokemon.jsx";
+import Pokemon, {pokemonLoader} from "./routes/pokemon.jsx";
 import "./index.css";
 import RootLayout from "./layouts/RootLayout.jsx";
-import Comment from "./routes/comment.jsx";
+import Comment, {commentsLoader} from "./routes/comment.jsx";
 import AddComment from "./routes/addComment.jsx";
 import Login from "./routes/login.jsx";
 
@@ -19,8 +19,8 @@ const router = createBrowserRouter(createRoutesFromElements(
 <Route path="/" element={<RootLayout/>}>
   <Route index element={<Root/>} />
   <Route path="ksl29_login" element={<Login/>} />
-  <Route path=":id" element={<Pokemon/>}>
-    <Route index element={<Comment/>} />
+  <Route path=":id" element={<Pokemon/>} loader={pokemonLoader}>
+    <Route index element={<Comment/>} loader={commentsLoader}/>
     <Route path="add-comment" element={<AddComment/>} />
   </Route>
 
