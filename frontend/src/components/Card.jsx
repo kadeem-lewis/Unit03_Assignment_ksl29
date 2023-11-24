@@ -5,7 +5,6 @@
 //Unit 11 Assignment
 
 import { Icons } from "./Icons";
-import { useOutletContext } from "react-router-dom";
 
 const pokemonTrivia = [
   "Rhydon was the first Pokémon ever created.",
@@ -15,9 +14,9 @@ const pokemonTrivia = [
   "Caterpie is the first pokemon ash caught himself",
 ];
 
-export const Card = () => {
-  const { selectedPokemon } = useOutletContext();
-  return selectedPokemon ? (
+export const Card = ({pokemon}) => {
+  
+  return pokemon ? (
     <div className="card-wrapper">
       <div className="card">
         <div className="card-heading">
@@ -26,38 +25,38 @@ export const Card = () => {
         </div>
         <div className="card-img">
           <img
-            src={selectedPokemon.sprites.front_default}
-            alt={`${selectedPokemon.name} sprite`}
+            src={pokemon.sprite}
+            alt={`${pokemon.name} sprite`}
           />
         </div>
         <div className="card-data">
           <div className="card-name">
             <Icons.pokeball className="pokeball" />
-            {selectedPokemon.id.toString().padStart(3, "0")}{" "}
-            {selectedPokemon.name}
+            {pokemon.id.toString().padStart(3, "0")}{" "}
+            {pokemon.name}
           </div>
           <div className="type-box">
-            {selectedPokemon.types.map((type, index) => (
-              <div key={index} className={`type ${type.type.name}`}>
-                {type.type.name}
+            {pokemon.types.map((type, index) => (
+              <div key={index} className={`type ${type.name}`}>
+                {type.name}
               </div>
             ))}
           </div>
           <div className="stats">
             <div className="physical-stats">
               <span>HT</span>
-              <span className="uom">{selectedPokemon.height / 10}m</span>
+              <span className="uom">{pokemon.height / 10}m</span>
             </div>
             <div className="physical-stats">
               <span>WT</span>
               <span className="uom">
-                {(selectedPokemon.weight / 10).toFixed(1)} lbs.
+                {(pokemon.weight / 10).toFixed(1)} lbs.
               </span>
             </div>
           </div>
         </div>
         <p className="card-description">
-          {selectedPokemon.flavorText.replace("/n", " ")}
+          {pokemon.flavorText.replace("/n", " ")}
         </p>
       </div>
     </div>
