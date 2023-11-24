@@ -14,6 +14,8 @@ export async function getPokedex(req, res, next) {
     filters.id = req.query.id;
   } else if (req.query.name) {
     filters.name = req.query.name;
+  } else if (req.query._id){
+    filters._id = req.query._id;
   }
   const results = await Pokedex.find(filters)
     .setOptions({ sanitizeFilter: true })
