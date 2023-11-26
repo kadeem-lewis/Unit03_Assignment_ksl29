@@ -5,6 +5,7 @@
 //Unit 11 Assignment
 
 import { Icons } from "./Icons";
+import styles from "./Card.module.css";
 
 const pokemonTrivia = [
   "Rhydon was the first Pokémon ever created.",
@@ -14,48 +15,43 @@ const pokemonTrivia = [
   "Caterpie is the first pokemon ash caught himself",
 ];
 
-export const Card = ({pokemon}) => {
-  
+export const Card = ({ pokemon }) => {
   return pokemon ? (
-    <div className="card-wrapper">
-      <div className="card">
-        <div className="card-heading">
+    <div className={styles.cardWrapper}>
+      <div className={styles.card}>
+        <div className={styles.cardHeading}>
           <Icons.caretDown />
           Info
         </div>
-        <div className="card-img">
-          <img
-            src={pokemon.sprite}
-            alt={`${pokemon.name} sprite`}
-          />
+        <div className={styles.cardImg}>
+          <img src={pokemon.sprite} alt={`${pokemon.name} sprite`} />
         </div>
-        <div className="card-data">
-          <div className="card-name">
-            <Icons.pokeball className="pokeball" />
-            {pokemon.id.toString().padStart(3, "0")}{" "}
-            {pokemon.name}
+        <div className={styles.cardData}>
+          <div className={styles.cardName}>
+            <Icons.pokeball className={styles.pokeball} />
+            {pokemon.id.toString().padStart(3, "0")} {pokemon.name}
           </div>
-          <div className="type-box">
+          <div className={styles.typeBox}>
             {pokemon.types.map((type, index) => (
               <div key={index} className={`type ${type.name}`}>
                 {type.name}
               </div>
             ))}
           </div>
-          <div className="stats">
-            <div className="physical-stats">
+          <div className={styles.stats}>
+            <div className={styles.physicalStats}>
               <span>HT</span>
-              <span className="uom">{pokemon.height / 10}m</span>
+              <span className={styles.uom}>{pokemon.height / 10}m</span>
             </div>
-            <div className="physical-stats">
+            <div className={styles.physicalStats}>
               <span>WT</span>
-              <span className="uom">
+              <span className={styles.uom}>
                 {(pokemon.weight / 10).toFixed(1)} lbs.
               </span>
             </div>
           </div>
         </div>
-        <p className="card-description">
+        <p className={styles.cardDescription}>
           {pokemon.flavorText.replace("/n", " ")}
         </p>
       </div>
