@@ -7,7 +7,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
-import Root from "./routes/root.jsx";
+import Root, { rootLoader } from "./routes/root.jsx";
 import Pokemon, {pokemonLoader} from "./routes/pokemon.jsx";
 import "./index.css";
 import RootLayout from "./layouts/RootLayout.jsx";
@@ -17,7 +17,7 @@ import Login from "./routes/login.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
 <Route path="/" element={<RootLayout/>}>
-  <Route index element={<Root/>} />
+  <Route index element={<Root/>} loader={rootLoader}/>
   <Route path="ksl29_login" element={<Login/>} />
   <Route path=":id" element={<Pokemon/>} loader={pokemonLoader}>
     <Route index element={<Comment/>} loader={commentsLoader}/>
