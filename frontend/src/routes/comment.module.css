@@ -1,0 +1,25 @@
+.commentCard {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 0 0.875rem;
+
+  & span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border-radius: 25%;
+    background-color: red;
+  }
+  & p {
+    grid-column: 2 / 3;
+  }
+}
