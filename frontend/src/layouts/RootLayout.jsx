@@ -4,30 +4,44 @@
 //IT301 - 001
 //Unit 11 Assignment
 
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import { useState, useEffect } from "react";
-import { getPokedex } from '../api/GetPokemon';
+import React from "react";
+import { Outlet, Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function RootLayout() {
+  const [user, setUser] = useState(
+    () => JSON.parse(sessionStorage.getItem("user")) || null,
+  );
 
-    const [pokemon, setPokemon] = useState([]);
-    const [selectedPokemon, setSelectedPokemon] = useState(null);
+  async function logout() {
+    setUser(null);
+    sessionStorage.removeItem("user");
+  }
 
-    useEffect(() => {
-        (async () => {
-          const pokemon = await getPokedex();
-          setPokemon(pokemon.results);
-        })();
-      }, []);
-    
+  console.log(user);
   return (
     <div className="container">
-        <header>National Pokedex</header>
-        <main>
-            <Outlet context={{pokemon,setPokemon,selectedPokemon,setSelectedPokemon}}/>
-        </main>
-        <footer>&copy; Kadeem Lewis 2023</footer>
+      <header>
+        <nav>
+          <Link to="/">National Pokedex</Link>
+          <menu>
+            <li>
+              <Link to="/ksl29_pokemon">Pokemon</Link>
+            </li>
+            <li>
+              {user ? (
+                <button onClick={logout}>Logout</button>
+              ) : (
+                <Link to="/ksl29_login">login</Link>
+              )}
+            </li>
+          </menu>
+        </nav>
+      </header>
+      <main>
+        <Outlet context={{ user, setUser }} />
+      </main>
+      <footer>&copy; Kadeem Lewis 2023</footer>
     </div>
-  )
+  );
 }
