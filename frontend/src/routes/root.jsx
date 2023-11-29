@@ -4,9 +4,9 @@
 //IT301 - 001
 //Unit 11 Assignment
 
-import { getPokedex } from "../api/GetPokemon";
 import { useLoaderData, useSearchParams } from "react-router-dom";
 import PokemonCard from "../components/PokemonCard";
+import styles from "./root.module.css";
 
 export async function rootLoader({ request }) {
   const url = new URL(request.url);
@@ -55,26 +55,28 @@ export default function Root() {
   };
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="pokemon-search" className="search">
-          Search for a pokemon:
-        </label>
-        <input type="text" list="pokedex" id="pokemon-search" />
-        <button type="submit">Submit</button>
-      </form>
-      <form onSubmit={(e) => handleSelectSubmit(e)}>
-        <label htmlFor="pokemon-type" className="search">
-          Filter by type:
-        </label>
-        <select id="pokemon-type">
-          {pokemonTypes.map((type, index) => (
-            <option key={index} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-        <button type="submit">Submit</button>
-      </form>
+      <div className={styles.filters}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <label htmlFor="pokemon-search" className="search">
+            Search for a pokemon:
+          </label>
+          <input type="text" list="pokedex" id="pokemon-search" />
+          <button type="submit">Submit</button>
+        </form>
+        <form onSubmit={(e) => handleSelectSubmit(e)}>
+          <label htmlFor="pokemon-type" className="search">
+            Filter by type:
+          </label>
+          <select id="pokemon-type">
+            {pokemonTypes.map((type, index) => (
+              <option key={index} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
       <div className="pokedex-grid">
         {pokedex?.map((pokemon) => (
           <PokemonCard key={pokemon._id} pokemon={pokemon} />

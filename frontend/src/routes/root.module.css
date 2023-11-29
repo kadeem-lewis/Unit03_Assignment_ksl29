@@ -1,0 +1,10 @@
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  & form {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
