@@ -1,0 +1,21 @@
+.navbar {
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.brand:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.menu {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.menu li a:hover {
+  color: #fff;
+}
