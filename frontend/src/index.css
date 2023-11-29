@@ -1,8 +1,8 @@
 /*Kadeem Lewis
 //ksl29
-//10-06-2023
+//12-01-2023
 //IT301 - 001
-//Unit 03 Assignment*/
+//Unit 11 Assignment*/
 
 @font-face {
   font-family: "pokemon-ds";
@@ -42,6 +42,29 @@ span {
   text-shadow: 1px 1px #aababa;
 }
 
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  line-height: 1;
+}
+
+h2 {
+  line-height: 1.25;
+}
+
+h3 {
+  line-height: 1.5;
+}
+
+p {
+  line-height: 1.5;
+}
+
 .container {
   display: flex;
   min-height: 100svh;
@@ -78,6 +101,19 @@ footer {
   background-color: rgba(255, 255, 255, 0.4);
   width: 100%;
   text-align: center;
+}
+a {
+  text-decoration: none;
+}
+
+a,
+a:hover,
+a:visited {
+  color: inherit;
+}
+
+li {
+  list-style: none;
 }
 
 .type {
