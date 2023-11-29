@@ -32,11 +32,13 @@ export const Card = ({ pokemon }) => {
             {pokemon.id.toString().padStart(3, "0")} {pokemon.name}
           </div>
           <div className={styles.typeBox}>
-            {pokemon.types.map((type, index) => (
-              <div key={index} className={`type ${type.name}`}>
-                {type.name}
-              </div>
-            ))}
+            {pokemon.types
+              .filter((type) => type !== "none")
+              .map((type, index) => (
+                <div key={index} className={`type ${type}`}>
+                  {type}
+                </div>
+              ))}
           </div>
           <div className={styles.stats}>
             <div className={styles.physicalStats}>
