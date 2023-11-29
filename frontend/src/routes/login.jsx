@@ -8,9 +8,9 @@ export default function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const username = event.target.elements["username"].value;
-    const password = event.target.elements["password"].value;
-    setUser({ username, password });
-    sessionStorage.setItem("user", JSON.stringify({ username, password }));
+    const userId = event.target.elements["userId"].value;
+    setUser({ username, userId });
+    sessionStorage.setItem("user", JSON.stringify({ username, userId }));
     navigate("/");
   };
   return (
@@ -19,8 +19,8 @@ export default function Login() {
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="username">Username:</label>
         <input type="text" name="username" id="username" />
-        <label htmlFor="password">Password:</label>
-        <input type="password" name="password" id="password" />
+        <label htmlFor="userId">User ID:</label>
+        <input type="text" name="userId" id="userId" />
         <button type="submit">Login</button>
       </form>
     </div>
