@@ -21,7 +21,7 @@ export default function Pokemon() {
   return (
     <>
       <Card pokemon={pokemon} />
-      <Outlet context={user} />
+      <Outlet context={{ user }} />
     </>
   );
 }
