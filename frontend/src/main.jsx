@@ -17,7 +17,7 @@ import Pokemon, { pokemonLoader } from "./routes/pokemon.jsx";
 import "./index.css";
 import RootLayout from "./layouts/RootLayout.jsx";
 import Comment, { commentsLoader } from "./routes/comment.jsx";
-import AddComment from "./routes/addComment.jsx";
+import AddComment, { commentAction } from "./routes/addComment.jsx";
 import Login from "./routes/login.jsx";
 
 const router = createBrowserRouter(
@@ -28,7 +28,11 @@ const router = createBrowserRouter(
       <Route path="ksl29_login" element={<Login />} />
       <Route path=":id" element={<Pokemon />} loader={pokemonLoader}>
         <Route index element={<Comment />} loader={commentsLoader} />
-        <Route path="add-comment" element={<AddComment />} />
+        <Route
+          path="add-comment"
+          element={<AddComment />}
+          action={commentAction}
+        />
       </Route>
     </Route>,
   ),
