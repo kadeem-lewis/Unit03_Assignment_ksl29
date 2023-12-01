@@ -13,7 +13,7 @@ export async function rootLoader({ request }) {
   const searchParams = url.searchParams.toString();
   console.log("Search Params:", searchParams);
   const response = await fetch(
-    `http://localhost:5000/api/v1/ksl29/pokemon?${searchParams}`,
+    `${import.meta.env.VITE_BACKEND_URL}/api/v1/ksl29/pokemon?${searchParams}`,
   );
   const pokedex = await response.json();
   return pokedex.results;
@@ -82,6 +82,13 @@ export default function Root() {
           <PokemonCard key={pokemon._id} pokemon={pokemon} />
         ))}
       </div>
+      <section className={styles.pagination}>
+        {[...Array(Math.ceil(150 / 20))].map((value, index) => (
+          <button key={index} onClick={() => setSearchParams({ page: index })}>
+            {index}
+          </button>
+        ))}
+      </section>
     </>
   );
 }

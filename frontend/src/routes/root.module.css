@@ -8,3 +8,15 @@
     gap: 0.5rem;
   }
 }
+
+.pagination {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  & button {
+    padding: 0.5rem 1rem;
+  }
+}
