@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 export default function PokemonCard({ pokemon }) {
   return (
-    <Link className={styles.card} to={`/${pokemon._id}`}>
+    <Link className={styles.card} to={`/ksl29_pokemon/${pokemon._id}`}>
       <img
         src={pokemon.sprite}
         alt={`${pokemon.name} sprite`}
