@@ -4,11 +4,16 @@ import {
   useActionData,
   useLocation,
   useOutletContext,
+  useParams,
+  Link,
 } from "react-router-dom";
+import styles from "./addComment.module.css";
 
 export default function AddComment() {
   const { state } = useLocation();
   const { user } = useOutletContext();
+  const { id } = useParams();
+  const response = useActionData();
   let editing = false;
   let initialCommentState = "";
 
@@ -27,24 +32,31 @@ export default function AddComment() {
 
   return (
     <>
-      <Form method={editing ? "put" : "post"}>
-        <textarea
-          name="comment"
-          id="comment"
-          cols="30"
-          rows="10"
-          onChange={(e) => handleCommentChange(e)}
-          value={comment}
-        />
-        <input type="hidden" name="username" value={user.username} />
-        <input type="hidden" name="userId" value={user.userId} />
-        <input
-          type="hidden"
-          name="commentId"
-          value={state?.currentComment._id}
-        />
-        <button type="submit">Submit</button>
-      </Form>
+      {response?.ok ? (
+        <div className={styles.success}>
+          <h4>Review submitted successfully</h4>
+          <Link to={`/ksl29_pokemon/${id}`}>Back to Pokemon</Link>
+        </div>
+      ) : (
+        <Form method={editing ? "put" : "post"}>
+          <textarea
+            name="comment"
+            id="comment"
+            cols="30"
+            rows="10"
+            onChange={(e) => handleCommentChange(e)}
+            value={comment}
+          />
+          <input type="hidden" name="username" value={user.username} />
+          <input type="hidden" name="userId" value={user.userId} />
+          <input
+            type="hidden"
+            name="commentId"
+            value={state?.currentComment._id}
+          />
+          <button type="submit">Submit</button>
+        </Form>
+      )}
     </>
   );
 }
@@ -58,7 +70,7 @@ export async function commentAction({ request, params }) {
   switch (request.method) {
     case "POST":
       const response = await fetch(
-        "http://localhost:5000/api/v1/ksl29/comments",
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/ksl29/comments`,
         {
           method: "POST",
           headers: {
@@ -72,21 +84,29 @@ export async function commentAction({ request, params }) {
           }),
         },
       );
-      const data = await response.json();
-      return data;
+      if (!response.ok) {
+        throw new Error("Error adding comment");
+      }
+      return { ok: true };
+
     case "PUT":
-      const res = await fetch("http://localhost:5000/api/v1/ksl29/comments", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/v1/ksl29/comments`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            comment,
+            commentId,
+            userId,
+          }),
         },
-        body: JSON.stringify({
-          comment,
-          commentId,
-          userId,
-        }),
-      });
-      const results = await res.json();
-      return results;
+      );
+      if (!res.ok) {
+        throw new Error("Error updating comment");
+      }
+      return { ok: true };
   }
 }
