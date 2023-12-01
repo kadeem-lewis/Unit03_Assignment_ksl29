@@ -8,9 +8,7 @@ const baseUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
 
 export async function getPokedex() {
   try {
-    const response = await fetch(
-      `${baseUrl}/api/v1/ksl29/pokemon`
-    );
+    const response = await fetch(`${baseUrl}/api/v1/ksl29/pokemon`);
     const data = await response.json();
     console.log(data);
     return data;
@@ -23,10 +21,10 @@ export async function getPokedex() {
 export async function getPokemon(pokemonId) {
   try {
     const response = await fetch(
-      `${baseUrl}/api/v1/ksl29/pokemon?_id=${pokemonId}`
+      `${baseUrl}/api/v1/ksl29/pokemon?_id=${pokemonId}`,
     );
     const data = await response.json();
-    console.log("Pokemon",data);
+    console.log("Pokemon", data);
     return data.results[0];
   } catch (error) {
     console.error(error);
@@ -34,13 +32,13 @@ export async function getPokemon(pokemonId) {
   }
 }
 
-export async function getComments(pokemon){
+export async function getComments(pokemon) {
   try {
     const response = await fetch(
-      `${baseUrl}/api/v1/ksl29/comments?pokemonId=${pokemon}`
+      `${baseUrl}/api/v1/ksl29/comments?pokemonId=${pokemon}`,
     );
     const data = await response.json();
-    console.log("Comments",data);
+    console.log("Comments", data);
     return data;
   } catch (error) {
     console.error(error);

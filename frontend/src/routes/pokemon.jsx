@@ -6,7 +6,7 @@
 
 import React from "react";
 import { Card } from "../components/Card.jsx";
-import { getPokemon } from "../api/GetPokemon.js";
+import { getPokemon } from "../service/PokemonDataService.js";
 import { Outlet, useLoaderData, useOutletContext } from "react-router-dom";
 
 export async function pokemonLoader({ params }) {
