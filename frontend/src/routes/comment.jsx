@@ -5,7 +5,7 @@ import {
   useOutletContext,
   useSubmit,
 } from "react-router-dom";
-import { getComments } from "../api/GetPokemon";
+import { getComments } from "../service/PokemonDataService";
 import styles from "./comment.module.css";
 
 export async function commentsLoader({ params }) {
@@ -23,14 +23,18 @@ export default function Comment() {
   };
   return (
     <>
-      {user && <Link to="add-comment">Add Comment</Link>}
+      {user && (
+        <Link to="add-comment" className={styles.addButton}>
+          Add Comment
+        </Link>
+      )}
       {comments?.map((comment) => (
         <div key={comment._id}>
           <div className={styles.commentCard}>
             <span>{comment.username.slice(0, 1).toUpperCase()}</span>
             <div>
               <p>{comment.username}</p>
-              <p>{comment.lastModified}</p>
+              <p>{new Date(Date.parse(comment.lastModified)).toDateString()}</p>
             </div>
             <p>{comment.comment}</p>
           </div>
@@ -54,13 +58,16 @@ export async function deleteCommentAction({ request }) {
   const formData = await request.formData();
   const commentId = formData.get("commentId");
   const userId = formData.get("userId");
-  const response = await fetch("http://localhost:5000/api/v1/ksl29/comments", {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}/api/v1/ksl29/comments`,
+    {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, commentId }),
     },
-    body: JSON.stringify({ userId, commentId }),
-  });
+  );
   const data = await response.json();
   return data;
 }
