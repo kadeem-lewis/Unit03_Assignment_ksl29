@@ -29,7 +29,11 @@ const router = createBrowserRouter(
       <Route index element={<Root />} loader={rootLoader} />
       <Route path="ksl29_pokemon" element={<Root />} loader={rootLoader} />
       <Route path="ksl29_login" element={<Login />} />
-      <Route path=":id" element={<Pokemon />} loader={pokemonLoader}>
+      <Route
+        path="ksl29_pokemon/:id"
+        element={<Pokemon />}
+        loader={pokemonLoader}
+      >
         <Route
           index
           element={<Comment />}
